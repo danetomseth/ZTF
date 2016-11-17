@@ -13,150 +13,33 @@
     }
 </style>
 
+<div layout="row" layout-align="center">
+<div class="row zt-upload-wrapper" flex="75">
 
-<!--   
-    <section id="photos">
-        <div nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
-            <div class="container">
+        <div class="col-md-3">
 
-                <div class="row">
+            <h3>Select files</h3>
 
-                    <div class="col-md-3">
-
-                        <h3>Select files</h3>
-
-                        <div ng-show="uploader.isHTML5">
-                            <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                                Base drop zone
-                            </div>
-
-                            <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-                                <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                                    Another drop zone with its own settings
-                                </div>
-                            </div>
-                        </div>
-
-                        Multiple
-                        <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
-
-                        Single
-                        <input type="file" nv-file-select="" uploader="uploader" />
-                    </div>
-
-                    <div class="col-md-9" style="margin-bottom: 40px">
-                        <div layout-gt-xs="column">
-                            <md-input-container class="md-block" flex-gt-xs>
-                                <label>Title Prefix</label>
-                                <input ng-model="title" required>
-                            </md-input-container>
-                          
-                            <md-input-container class="md-block" flex-gt-sm>
-                            <label>Album</label>
-                                <md-select ng-model="photoAlbum">
-                                  <md-option ng-repeat="album in albums" value="{{album._id}}">
-                                    {{album.title}}
-                                </md-option>
-                            </md-select>
-                        </md-input-container>
-                    </div>
-                    <h3>Upload queue</h3>
-                    <p>Queue length: {{ uploader.queue.length }}</p>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="50%">Name</th>
-                                <th ng-show="uploader.isHTML5">Size</th>
-                                <th ng-show="uploader.isHTML5">Progress</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in uploader.queue">
-                                <td><strong>{{ item.file.name }}</strong></td>
-                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-                                <td ng-show="uploader.isHTML5">
-                                    <div class="progress" style="margin-bottom: 0;">
-                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                                </td>
-                                <td nowrap>
-                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                        <span class="glyphicon glyphicon-upload"></span> Upload
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                                        <span class="glyphicon glyphicon-trash"></span> Remove
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div>
-                        <div>
-                            Queue progress:
-                            <div class="progress" style="">
-                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                            <span class="glyphicon glyphicon-upload"></span> Upload all
-                        </button>
-                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-                        </button>
-                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                            <span class="glyphicon glyphicon-trash"></span> Remove all
-                        </button>
-                    </div>
-
+            <div ng-show="uploader.isHTML5">
+                <!-- 3. nv-file-over uploader="link" over-class="className" -->
+                <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
+                    Base drop zone
                 </div>
 
-            </div>
-
-        </div>
-    </div>
-</section>
-
--->
-
-
-<div class="row">
-
-    <div class="col-md-3">
-
-        <h3>Select files</h3>
-
-        <div ng-show="uploader.isHTML5">
-            <!-- 3. nv-file-over uploader="link" over-class="className" -->
-            <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                Base drop zone
-            </div>
-
-            <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-            <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-                <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                    Another drop zone with its own settings
+                <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
+                    <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+                        Another drop zone with its own settings
+                    </div>
                 </div>
             </div>
+
+            <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+            <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
+
         </div>
 
-        <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-        <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
-
-    </div>
-
-    <div class="col-md-9" style="margin-bottom: 40px">
+        <div class="col-md-9" style="margin-bottom: 40px">
         <!-- <h2>Uploads only images (with canvas preview)</h2>
         <h3>The queue</h3>
         <p>Queue length: {{ uploader.queue.length }}</p> -->
@@ -175,13 +58,13 @@
             </md-select>
         </md-input-container>
         <div layout="row">
-        <md-input-container  flex=60 class="md-block">
-            <label>New Album</label>
+            <md-input-container  flex=60 class="md-block">
+                <label>New Album</label>
                 <input ng-model="newAlbum">
             </md-input-container>
-        <md-input-container  flex=40 class="md-block">
-        <md-button class="md-primary md-raised" ng-click="createAlbum()">Create</md-button>
-        </md-input-container>
+            <md-input-container  flex=40 class="md-block">
+                <md-button class="md-primary md-raised" ng-click="createAlbum()">Create</md-button>
+            </md-input-container>
         </div>
     </div>
 
@@ -251,6 +134,7 @@
         </button>
     </div>
 
+</div>
 </div>
 </div>
 

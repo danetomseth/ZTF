@@ -22,7 +22,7 @@ app.config(function ($stateProvider) {
 
 app.config(function ($stateProvider) {
     $stateProvider.state('uploadPhotos', {
-        url: '/upload',
+        url: '/uploadPhotos',
         templateUrl: 'js/photos/photos-upload.html',
         controller: 'UploadPhotoCtrl'
     });

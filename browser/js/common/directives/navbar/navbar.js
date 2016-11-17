@@ -13,23 +13,27 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             )
 
             scope.items = [{
-                label: 'Home',
-                state: 'home'
-            }, {
-                label: 'Photos',
-                state: 'photos'
-            }, {
-                label: 'Albums',
-                state: 'albums'
-            }, 
-            {
-                label: 'Schedule',
-                state: 'calendar'
-            },
-            {
-                label: 'Admin',
-                state: 'admin'
-            }];
+                    label: 'Home',
+                    state: 'home'
+                }, {
+                    label: 'Photos',
+                    state: 'photos'
+                }, {
+                    label: 'Albums',
+                    state: 'albums'
+                }, {
+                    label: 'Upload',
+                    state: 'upload'
+                }, {
+                    label: 'New Album',
+                    state: 'newAlbum'
+                },
+
+                {
+                    label: 'Admin',
+                    state: 'admin'
+                }
+            ];
 
             scope.user = null;
 
@@ -43,7 +47,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 });
             };
 
-            
+
 
             var setUser = function() {
                 AuthService.getLoggedInUser().then(function(user) {

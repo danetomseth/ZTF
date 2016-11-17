@@ -45,13 +45,22 @@
 
 
 
-<div id="imageThumbs" ng-show="selectingPictures">
+<!-- <div id="imageThumbs" ng-show="selectingPictures">
 
 <div id="imageBox" class="md-whiteframe-3dp" ng-repeat="photo in photos">
   <img ng-src="{{photo.thumbSrc}}" ng-click="addToAlbum(photo)" alt="">
 </div>
-</div>
+</div> -->
 
+<div ng-show="selectingPictures">
+  <div layout="row" layout-wrap>
+    <div flex="20" class="ui-item" ng-click="addToAlbum(photo)" ng-repeat="photo in photos">
+      <img ng-src="{{photo.thumbSrc}}" alt="" class="img-responsive" />
+     
+    </div>
+
+  </div>
+</div>
 
 
 

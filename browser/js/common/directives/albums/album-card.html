@@ -1,29 +1,7 @@
-<!-- <md-card>
-		<md-card-title class="title-sm">
-			<md-card-title-text>
-				<span class="md-headline">{{album.title}}</span>
-			</md-card-title-text>
-		</md-card-title>
-		<md-card-content layout="row" layout-align="space-between">
-			<div id="cardImg" class="md-media-lg card-media" ui-sref='singleAlbum({albumId: album._id})'>
-				<img ng-src="{{album.cover.thumbSrc}}" alt="">
-			</div>
-			<md-card-actions layout="column">
-				<md-button ng-click="addToFavorites()" class="md-icon-button md-primary" aria-label="Favorite">
-					<md-icon class="material-icons">favorite</md-icon>
-				</md-button>
-				<md-button class="md-icon-button md-primary" ng-click="editAlbum()" aria-label="Settings">
-					<md-icon class="material-icons">create</md-icon>
-				</md-button>
-				<md-button class="md-icon-button md-primary" aria-label="Share">
-					<md-icon class="material-icons">share_arrow</md-icon>
-				</md-button>
-			</md-card-actions>
-		</md-card-content>
-	</md-card> -->
+
 
 		<div class="zt-content-box">
-		<div class="zt-content-box-header zt-primary"><h3>{{album.title}}</h3><i class="zt-white glyph-icon fa-heart" ></i> <i class="zt-white glyph-icon fa-pencil" ></i></div>
+		<div class="zt-content-box-header zt-primary"><h3>{{album.title}}</h3><i class="zt-white glyph-icon fa-heart" ></i> <i class="zt-white glyph-icon fa-pencil" ng-click="editAlbum()"></i></div>
 			<div class="zt-content-box-wrapper">
 				
 				<div ng-if="album.cover.thumbSrc" class="zt-album-cover" zt-set-size>

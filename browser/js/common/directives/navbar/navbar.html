@@ -1,11 +1,22 @@
 
 
-<md-content class="md-padding">
+<!-- <md-content class="md-padding">
     <md-nav-bar md-selected-nav-item="currentPage" nav-bar-aria-label="navigation links">
       <md-nav-item ng-repeat="item in items" md-nav-sref="{{item.state}}" name="{{item.state}}">{{item.label}}</md-nav-item>
     </md-nav-bar>
     <span>{{currentNavItem}}</span>
-</md-content>
+</md-content> -->
+<div layout="column" layout-align="start center" class="zt-header">
+	<div class="zt-logo">
+		<img src="/assets/img/logo.png" alt="">
+	</div>
+	<div class="zt-nav" layout="row">
+		<div class="zt-nav-item" ng-repeat="item in items">
+			<a ui-sref="{{item.state}}">{{item.label}}</a>
+		</div>
+	</div>
+</div>
+
 
 
 

@@ -40,6 +40,8 @@ app.controller('EditAlbumCtrl', ($scope, AlbumFactory, PhotosFactory, DialogFact
 	}
 
 	$scope.addToAlbum = (photo) => {
+		console.log("added", photo);
         $scope.album.photos.push(photo._id);
+        AlbumFactory.addPhoto(album._id, photo._id)
     }
 })

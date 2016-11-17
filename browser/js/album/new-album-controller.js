@@ -3,18 +3,12 @@ app.controller('NewAlbumCtrl', ($scope, $state, AlbumFactory, PhotosFactory, Ses
 	$scope.showPhotos = false;
 
 	$scope.createAlbum = () => {
-		$scope.album.owner = Session.user._id;
+        if(Session.user) {
+		  $scope.album.owner = Session.user._id;
+        }
 		console.log($scope.album);
-        AlbumFactory.createAlbum($scope.album).then(album => {
-        	DialogFactory.display("Created", 1000);
-        	$scope.album = album;
-        	return PhotosFactory.fetchAll();
-        })
-        .then(photos => {
-        	console.log(photos);
-        	$scope.photos = photos;
-        	$scope.showPhotos = true;
-        })
+
+        AlbumFactory.createAlbum($scope.album)
     }
 
 

@@ -30,6 +30,19 @@ router.get('/:albumId', (req, res, next) => {
     });
 });
 
+
+
+router.get('/photos/:albumId', (req, res, next) => {
+    console.log("fetching");
+    Photo.find({
+        album: req.params.albumId
+    })
+    .then(photos => {
+        console.log('photos from album: ', photos);
+        res.send(photos);
+    });
+})
+
 router.get('/user/:userId', (req, res, next) => {
     Album.find({
         owner: req.params.userId
@@ -84,6 +97,20 @@ router.post('/update', (req, res, next) => {
         }
         res.sendStatus(200);
     });
+});
+
+
+router.post('/addPhoto', (req, res, next) => {
+    Album.findById(req.body.albumId)
+    .then(album => {
+        console.log("album found: ", album);
+        return album.addPhoto(req.body.photoId);
+    })
+    .then(album => {
+        console.log("success", album);
+        res.sendStatus(200);
+    })
+    res.end();
 });
 
 

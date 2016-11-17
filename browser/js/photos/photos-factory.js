@@ -31,6 +31,17 @@ app.factory('PhotosFactory', ($http) => {
 			.then(res => {
 				console.log("Returned: ", res.data);
 			})
+		},
+		updateAll: () => {
+			$http.put('/api/photos/updateAll').then(res => {
+				console.log("res: ", res.data);
+			})
+		},
+		getRandom: (amount) => {
+			return $http.get('/api/photos/random/' + amount).then(res => {
+				console.log("res: ", res.data);
+				return res.data;
+			})
 		}
 	}
 });

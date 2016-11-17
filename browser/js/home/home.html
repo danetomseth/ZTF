@@ -1,5 +1,33 @@
-<banner></banner> 
+<!-- <banner></banner>  -->
 
+<div layout="row" layout-align="center"></div>
+<div>
+  <md-button class="md-primary md-raised" ng-click="updateAll()">Update</md-button>
+</div>
+
+<div>
+  <md-button class="md-primary md-raised" ng-click="getRandom()">Random</md-button>
+</div>
+
+
+
+<div ng-cloak>
+  <div id="owl-demo" class="mt-home-gallery">
+
+  <div class="mt-home-gallery-item" ng-repeat="photo in slidePhotos" >
+    <img ng-src="{{photo.thumbSrc}}" alt="Image">
+  </div>
+
+<!--   <div class="item"><img src="https://s3-us-west-2.amazonaws.com/ztf/thumbnail-upload-img-43a569f2.jpg" alt="Owl Image"></div>
+    <div class="item"><img src="https://s3-us-west-2.amazonaws.com/ztf/thumbnail-upload-img-43a569f2.jpg" alt="Owl Image"></div>
+      <div class="item"><img src="https://s3-us-west-2.amazonaws.com/ztf/thumbnail-upload-img-43a569f2.jpg" alt="Owl Image"></div>
+        <div class="item"><img src="https://s3-us-west-2.amazonaws.com/ztf/thumbnail-upload-img-43a569f2.jpg" alt="Owl Image"></div> -->
+
+
+  </div>
+
+
+</div>
 
 
 

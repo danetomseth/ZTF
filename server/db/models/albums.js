@@ -37,5 +37,30 @@ var schema = new mongoose.Schema({
 });
 
 
+schema.pre('save', function (next) {
+
+    if (!this.cover && this.photos.length) {
+        console.log("adding cover from first photo: ");
+        this.cover = this.photos[0]
+    }
+
+    next();
+
+});
+
+
+// schema.statics.addPhoto = function addPhoto (albumId, photoId) {
+//     console.log("album**** ", albumId);
+
+// }
+
+
+
+schema.method('addPhoto', function (photoId) {
+    console.log("in method", photoId);
+    this.photos.push(photoId)
+    return this.save();
+});
+
 
 mongoose.model('Album', schema);

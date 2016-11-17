@@ -1,0 +1,61 @@
+#owl-demo .item{
+	margin: 3px;
+}
+#owl-demo .item img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.mt-home-gallery-item {
+	height: 500px;
+	position: relative;
+	margin: 15px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+
+.mt-home-gallery-item img {
+	position:absolute;
+	top:0;
+	bottom:0;
+	margin:auto;
+}
+
+
+
+.mt-home-gallery {
+	height: 900px;
+}
+
+
+
+.clients-carousel .mt-client-item {
+	position: relative;
+	margin: 15px;
+	height: 250px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+
+.mt-client-item .caption {
+	padding: 15px;
+	color: rgba(255, 255, 255, 0.9);
+	width: 100%;
+	margin: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.mt-client-item img {
+	position:absolute;
+	top:0;
+	bottom:0;
+	margin:auto;
+}

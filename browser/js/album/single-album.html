@@ -14,11 +14,27 @@
 
 
 
+
+<!-- <md-button ng-hide="changesMade" class="md-accent md-raised" ng-click="fetchPhotos()">Fetch</md-button>
+
 <div deckgrid class="deckgrid" source="album.photos">
 		<div class="a-card">
 			<img src="" data-ng-src="{{card.thumbSrc}}">
-			<!-- <span class="glyphicon glyphicon-plus" data-ng-click="mother.followPhoto(card)"></span> -->
 			<span ng-show="removePhotos" class="glyphicon glyphicon-remove-sign" data-ng-click="mother.removeFromAlbum(photo)"></span>
 			<span ng-show="selectingCover" class="glyphicon glyphicon-plus" data-ng-click="mother.addCover(photo)"></span>
 		</div>
-	</div>
+	</div> -->
+
+
+
+	<div class="ui-69">
+			<div class="container">
+				<div layout="row" layout-wrap layout-margin>
+					<div flex="20" ng-repeat="photo in photos">
+						<!-- Item -->
+						<single-photo photo="photo"></single-photo>
+					</div>
+			
+				</div>
+			</div>
+		</div>

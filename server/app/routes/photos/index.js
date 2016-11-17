@@ -1,21 +1,21 @@
 'use strict';
-var router = require('express').Router();
-var path = require('path');
-var busboy = require('connect-busboy'); //middleware for form/file upload
-var mongoose = require('mongoose');
+let router = require('express').Router();
+let path = require('path');
+let busboy = require('connect-busboy'); //middleware for form/file upload
+let mongoose = require('mongoose');
 
 
 // Upload Dependencies
-var uniqueFilename = require('unique-filename');
-var AWS = require('aws-sdk');
-var sKey = require(path.join(__dirname, '../../../env')).AKID;
-var im = require('imagemagick');
-var s3Path = 'https://s3-us-west-2.amazonaws.com/ztf/';
+let uniqueFilename = require('unique-filename');
+let AWS = require('aws-sdk');
+let sKey = require(path.join(__dirname, '../../../env')).AKID;
+let im = require('imagemagick');
+let s3Path = 'https://s3-us-west-2.amazonaws.com/ztf/';
 
 
 
 
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({
     extended: true
@@ -23,8 +23,21 @@ router.use(bodyParser.urlencoded({
 
 
 
-var Photo = mongoose.model('Photo')
+let Photo = mongoose.model('Photo')
 router.use(busboy());
+
+
+
+router.put('/updateAll', (req, res, next) => {
+    Photo.find({})
+    .then(photos => {
+        photos.forEach(function(photo) {
+            photo.updatePhoto().then(photo => {
+                console.log("Updated!!!");
+            })
+        })
+    })
+})
 
 
 router.post('/add', (req, res, next) => {
@@ -55,6 +68,19 @@ router.get('/limit10', (req, res, next) => {
         })
 });
 
+router.get('/random/:limit', (req, res, next) => {
+    let limit = Number(req.params.limit);
+    Photo.findRandom().limit(limit).exec(function(err, photos) {
+        if(err) {
+            console.log('err fetching random photos', err);
+            next(err)
+        }
+        else {
+            res.send(photos)
+        }
+    })
+});
+
 router.get('/:album', (req, res, next) => {
     Photo.find({album: req.params.album})
         .then((photos) => {
@@ -64,11 +90,11 @@ router.get('/:album', (req, res, next) => {
 });
 
 router.post('/update', (req, res, next) => {
-    var query = {
+    let query = {
         "_id": req.body._id
     };
-    var update = req.body;
-    var options = {
+    let update = req.body;
+    let options = {
         new: true
     };
     Photo.findOneAndUpdate(query, update, options, function(err, photo) {
@@ -83,13 +109,10 @@ router.post('/update', (req, res, next) => {
 
 
 
-var addToDb = function(path, title, albumId) {
-    Photo.create({
-        src: s3Path + path,
-        thumbSrc: s3Path + 'thumbnail-' + path,
-        title: title,
-        album: albumId
-    })
+let addToDb = function(photo) {
+    //******* Need to add album id somewhere*************
+    console.log("photo being created: ", photo);
+    Photo.create(photo)
         .then(function(err, data) {
             if (err) {
                 err.message = "Error saving photo to DB"
@@ -108,8 +131,8 @@ function createThumbnail(file, filename) {
         width: 800
     }, function(err, stdout, stderr) {
         if (err) throw err;
-        var base64data = new Buffer(stdout, 'binary');
-        var s3bucket = new AWS.S3({
+        let base64data = new Buffer(stdout, 'binary');
+        let s3bucket = new AWS.S3({
             params: {
                 Bucket: 'ztf'
             }
@@ -119,7 +142,7 @@ function createThumbnail(file, filename) {
             err.status = 500;
             throw err
         }
-        var params = {
+        let params = {
             Key: 'thumbnail-' + filename,
             Bucket: 'ztf',
             Body: base64data
@@ -136,42 +159,41 @@ function createThumbnail(file, filename) {
 router.post('/uploadAWS', function(req, res, next) {
     req.pipe(req.busboy);
     let title = '';
-    let albumId = '';
+    let albumId;
+    let newPhoto = {}
+
+
     req.busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
       if(fieldname === 'title') {
         title = val;
-        // console.log('title!!!');
-
-      }
-      else if(fieldname === 'album') {
-        albumId = val;
-        // console.log('album!!!');
-      }
-      else {
-        // console.log('no match');
       }
     });
     req.busboy.on('file', function(fieldname, file, fileName, encoding, mimetype) {
-        var filename = uniqueFilename('upload-img') + '.jpg';
+        let filename = uniqueFilename('upload-img') + '.jpg';
         filename = filename.replace(/\//g, '-');
-        var s3bucket = new AWS.S3({
+        let s3bucket = new AWS.S3({
             params: {
                 Bucket: 'ztf'
             }
         });
-        var params = {
+        let params = {
             Key: filename,
             Bucket: 'ztf',
             ContentType: 'image/jpeg',
             Body: file
         };
 
+
+
         s3bucket.upload(params, function(err, data) {
             if (err) {
                 console.log("Error uploading data: ", err);
             } else {
                 createThumbnail(file, filename);
-                addToDb(filename, title, albumId);
+                newPhoto.src = s3Path + filename;
+                newPhoto.thumbSrc = s3Path + 'thumbnail-' + filename;
+                newPhoto.title = title;
+                addToDb(newPhoto);
                 res.json(filename);
                 res.end();
             }

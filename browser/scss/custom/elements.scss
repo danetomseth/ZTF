@@ -64,3 +64,33 @@
 	color: white;
 	text-align: center;
 }
+
+.zt-logo {
+
+}
+
+.zt-logo img {
+	height: 200px;
+}
+
+.zt-nav {
+	margin-bottom: 15px;
+}
+
+.zt-nav-item {
+	border-left: 1px solid black;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 18px;
+}
+
+.zt-nav-item:first-child {
+	border-left: none;
+}
+
+.zt-header {
+	border-bottom: 1px solid black;
+	padding-bottom: 15px;
+}

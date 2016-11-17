@@ -1,13 +1,26 @@
-<div class="zt-content-box">
-		<div class="zt-content-box-header zt-primary"><h3>Photo</h3><i class="zt-white glyph-icon fa-heart" ></i> <i class="zt-white glyph-icon fa-pencil" ></i></div>
-			<div class="zt-content-box-wrapper">
-				
-				<div  class="zt-album-cover">
-					<img ng-src="{{photo.thumbSrc}}" alt="">
-				</div>
-				
-				<div class="text-center zt-card-actions">
-					<md-button class="md-primary" ng-click="viewPhoto()">View</md-button>
-				</div>
-			</div>
+<!-- <div class="zt-content-box">
+	<div class="zt-content-box-header zt-primary"><h3>Photo</h3><i class="zt-white glyph-icon fa-heart" ></i> <i class="zt-white glyph-icon fa-pencil" ></i></div>
+	<div class="zt-content-box-wrapper">
+		
+		<div  class="zt-album-cover">
+			<img ng-src="{{photo.thumbSrc}}" alt="">
 		</div>
+		
+		<div class="text-center zt-card-actions">
+			<md-button class="md-primary" ng-click="viewPhoto()">View</md-button>
+		</div>
+	</div>
+</div> -->
+
+
+<div class="ui-item">
+	<!-- Image -->
+	<img ng-src="{{photo.thumbSrc}}" alt="" class="img-responsive" />
+	<!-- Image Hover -->
+	<div class="image-hover bg-red ui-right">
+		<!-- Heading -->
+		<h3><a href="#">Lipsum</a></h3>
+		<!-- Paragraph -->
+		<p>Sed perspic unde omnis iste natu volupta accusant laudan.</p>
+	</div>
+</div>

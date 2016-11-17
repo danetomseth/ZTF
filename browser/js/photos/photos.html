@@ -6,9 +6,25 @@
         <img src="" data-ng-src="{{card.thumbSrc}}">
     </div>
 </div> -->
+<div layout="row">
+	<md-button class=" md-primary" ui-sref="uploadPhotos">Upload</md-button>
+	</div>
+
+</div>
+<div class="ui-69">
+			<div class="container">
+				<div layout="row" layout-wrap layout-margin>
+					<div flex="20" ng-repeat="photo in photos">
+						<!-- Item -->
+						<single-photo photo="photo"></single-photo>
+					</div>
+			
+				</div>
+			</div>
+		</div>
 
 
-
+<!-- 
 <div>
 
   <div layout="row" layout-wrap>
@@ -22,4 +38,4 @@
 
   </div>
 
-</div>
+</div> -->

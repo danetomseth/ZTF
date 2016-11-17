@@ -10,6 +10,7 @@ router.use('/chats', require('./chats'));
 router.use('/users', require('./users'));
 router.use('/photos', require('./photos'));
 router.use('/albums', require('./albums'));
+router.use('/upload', require('./upload'));
 router.use('/getFiles', require('./getFiles'));
 
 
